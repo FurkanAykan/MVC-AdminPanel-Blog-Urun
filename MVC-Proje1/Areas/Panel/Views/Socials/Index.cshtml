@@ -1,0 +1,65 @@
+﻿@model IEnumerable<EntityLayer.Entity.Social>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Sosyal Medyalar</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    <a href="/Panel/Socials/Create" class="btn btn-primary"><i class="fa fa-plus-square"></i>Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Facebook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instagram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Twitter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Youtube)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Linkedin)
+        </th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facebook)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instagram)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Twitter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Youtube)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Linkedin)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.ID })*@
+                <a href="/Panel/Socials/Edit/@item.ID" class="btn btn-warning">Güncelle</a>
+            </td>
+            <td>
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                <a href="/Panel/Socials/Delete/@item.ID" class="btn btn-danger">Sil</a>
+            </td>
+        </tr>
+    }
+
+</table>

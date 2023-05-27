@@ -1,0 +1,123 @@
+﻿@model List<EntityLayer.Entity.ProductImage>
+@{
+    ViewBag.Title = "Images";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+
+<div class="upload-panel">
+
+    <input type="hidden" id="productid" value="@ViewContext.RouteData.Values["id"].ToString()" />
+
+    <input type="file" multiple name="images" id="images" class="form-control" />
+    <br />
+
+    <a class="btn btn-primary btn-upload"><i class="fa fa-save"></i>  Yükle</a>
+
+</div>
+<ul class="image-list">
+    @foreach (var item in Model)
+    {
+        <li class="li-@item.ImageID">
+            <img src="@item.ThumbUrl" />
+            <div class="delete-image" data-id="@item.ImageID">
+                <i class="fa fa-trash"></i>
+            </div>
+        </li>
+    }
+
+</ul>
+
+<style>
+    .image-list {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+
+        .image-list li {
+            margin: 5px;
+            padding: 5px;
+            list-style: none;
+            border: 1px solid #e2e2e2;
+            display: inline-block;
+        }
+
+            .image-list li img {
+                aspect-ratio: 1/1.2;
+                object-fit: cover;
+                object-position: center;
+                max-width: 150px;
+            }
+</style>
+
+<script>
+
+    $(function () {
+
+        $(".btn-upload").on("click", function () {
+
+            var pid = $("#productid").val();
+
+            var files = $("#images").get(0).files;
+
+            var data = new FormData();
+
+            for (var i = 0; i < files.length; i++) {
+
+                data.append("dosya", files[i]);
+            }
+
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/panel/products/upload/" + pid,
+                    data: data,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function (response) {
+                        window.location.href = window.location.href
+                        //for (var i = 0; i < response.length; i++) {
+
+                        //    var li = "<li><img src=" + response[i].ThumbUrl + " /></li><div class='delete-image'><i class='fa fa-trash'></i></div>";
+                        //    $(".image-list").prepend(li)
+                        //}
+
+                    },
+                    onfailure: function () {
+
+                    }
+                }
+            );
+
+        });
+
+        $(".delete-image").on("click", function () {
+
+            var id = $(this).data("id");
+
+            $.ajax(
+                {
+                    type: "GET",
+                    url: "/panel/products/DeleteImages/" + id,
+                    success: function (response) {
+
+                        $(".li-" + id).remove();
+                  
+                    },
+                    onfailure: function () {
+
+                    }
+                }
+            );
+
+        });
+
+
+    });
+
+
+</script>
+

@@ -1,0 +1,99 @@
+﻿
+@model MVC_Proje1.Models.NavbarViewModel
+
+<header class="header_area">
+    <div class="main_header_area animated">
+        <div class="container">
+            <nav id="navigation1" class="navigation">
+                <div class="nav-header">
+                    <a class="nav-brand" href="/home"><img src="~/Content/academy.png" style="max-width:250px" /></a>
+                    <div class="nav-toggle">
+                        <div class="navbar-toggle">
+                            <span class="icon-bar top-bar"></span>
+                            <span class="icon-bar middle-bar"></span>
+                            <span class="icon-bar bottom-bar"></span>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="nav-search">
+                    <div class="nav-search-button"><i class="nav-search-icon"></i></div>
+                    <form>
+                        <div class="nav-search-inner">
+                            <input type="search" name="search" placeholder="Search..." />
+                        </div>
+                    </form>
+                </div>
+                <div class="nav-menus-wrapper">
+                    <ul class="nav-menu align-to-right">
+                        <li><a href="/home" ><i class="fa fa-home"></i></a></li>
+                        <li>
+                            <a href="#">Kurumsal</a>
+                            <ul class="nav-dropdown">
+
+                                @foreach (var item in Model.Pages.Where(x => x.CategoryID == 1 && x.IsActive == true).ToList())
+                                {
+                                    <li><a href="/Pages/Detail/@item.PageID">@item.PageTitle</a></li>
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Eğitimler</a>
+                            <ul class="nav-dropdown">
+
+                                @foreach (var item in Model.Pages.Where(x => x.CategoryID == 8 && x.IsActive == true).ToList())
+                                {
+                                    <li><a href="/Pages/Detail/@item.PageID">@item.PageTitle</a></li>
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Hizmetlerimiz</a>
+                            <ul class="nav-dropdown">
+
+                                @foreach (var item in Model.Pages.Where(x=>x.CategoryID==2 && x.IsActive==true).ToList())
+                                {
+                                   <li><a href="/Pages/Detail/@item.PageID">@item.PageTitle</a></li>
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/Products/Index">Ürünler</a>
+                            <ul class="nav-dropdown">
+
+                              @foreach (var item in Model.Products)
+                              {
+                                  <li><a href="/Products/Index/@item.CategoryID">@item.CategoryName</a></li>
+                              }
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/Pages/index/7">Blog</a>
+
+                        </li>
+                        <li>
+                            <a href="/Contact">İletişim</a>
+
+                        </li>
+                        
+                        <li>
+                            <a href="/Products/SepetDetay">
+                                <i class="fa fa-shopping-basket"></i>
+                                <span>@Html.Action("SepetInfo","Products")</span>
+
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

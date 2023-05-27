@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Entity.Page
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb">
+
+    <div class="container">
+        <h1>@Model.PageTitle</h1>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <img src="@Model.ImageUrl" style="width:100%" />
+    <br />
+
+    <div>
+
+        @Html.Raw(Model.Description)
+
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EntityLayer.Entity.Slider>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Slider Sayfası</h2>
+
+<p>
+    <a href="/Panel/Sliders/Create" class="btn btn-primary"><i class="fa fa-plus-square-o"></i>  Yeni Ekle</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>Güncelle</th>
+        <th>Sil</th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            <img src="@item.ImageUrl" style="max-width:70px;" alt="Alternate Text" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+
+       
+        <td><a href="/Panel/Sliders/Edit/@item.Id" class="btn btn-warning"><i class="fa fa-edit">  </i>Düzenle</a></td>
+        <td><a href="/Panel/Sliders/Delete/@item.Id" class="btn btn-danger"><i class="fa fa-trash">  </i>Sil</a></td>
+        
+    </tr>
+}
+
+</table>

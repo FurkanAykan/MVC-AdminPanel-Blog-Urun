@@ -1,0 +1,29 @@
+﻿
+@model List<EntityLayer.Entity.Page>
+
+
+<div class="container">
+    <h2 @*style="text-align:center; color:orangered; font-size:15pt; font-weight:bold;"*@>Son Yazılar</h2>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="article">
+                    <a href="/pages/detail/@item.PageID">
+                        <img src="@item.Thumbrl" />
+                    </a>
+                    <div class="article-content">
+                        <a href="/pages/detail/@item.PageID">
+                            <h2>@item.PageTitle</h2>
+
+                        </a>
+                        <a href="/pages/detail/@item.PageID">
+                            <p>@item.MetaDescription</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

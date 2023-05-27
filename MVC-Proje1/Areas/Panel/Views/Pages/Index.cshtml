@@ -1,0 +1,69 @@
+﻿@model IEnumerable<EntityLayer.Entity.Page>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Sayfalar</h2>
+
+<p>
+    <a href="/Panel/Pages/Create" class="btn btn-info"><i class="fa fa-plus-square"></i>  Sayfa Ekle</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Thumbrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageCategory.CategoryName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PageDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>Düzenle</th>
+        <th>Sil</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img src="@item.Thumbrl" style="max-width:60px;"</td>
+
+            <td>@item.PageTitle</td>
+
+
+            <td>@item.PageCategory.CategoryName</td>
+
+
+
+            <td>@item.PageDate.ToShortDateString()</td>
+
+            <td>
+                @if (item.IsActive == true)
+                {
+
+                    <div class="aktif"></div>
+
+
+                }
+                else
+                {
+                    <div class="pasif"></div>
+                }
+            </td>
+            <td><a href="/Panel/Pages/Edit/@item.PageID" class="btn btn-warning"><i class="fa fa-edit">  </i>Düzenle</a></td>
+            <td><a href="/Panel/Pages/Delete/@item.PageID" class="btn btn-danger"><i class="fa fa-trash">  </i>Sil</a></td>
+
+        </tr>
+
+    }
+
+</table>

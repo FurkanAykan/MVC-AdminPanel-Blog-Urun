@@ -1,0 +1,39 @@
+﻿@model EntityLayer.Entity.PageCategory
+@{
+    ViewBag.Title = "create";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Kategori Ekle</h2>
+
+@using (Html.BeginForm("create", "Pagecategories", FormMethod.Post, new {enctype="multipart/form-data"})) //dosya eklemek için sonda ki uzantı verilmeli
+{
+    @Html.AntiForgeryToken()
+
+    @Html.LabelFor(m => m.CategoryName)
+    @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.CategoryName, "", new { @class = "text-danger" })
+    <br />
+    <label>Resim</label>
+    <input type="file" name="Resim" class="form-control"/>
+    @*@Html.LabelFor(m => m.ImageUrl)
+    @Html.TextBoxFor(m => m.ImageUrl, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ImageUrl, "", new { @class = "text-danger" })*@
+    <br />
+    @Html.LabelFor(m => m.MetaDescription)
+    @Html.TextBoxFor(m => m.MetaDescription, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MetaDescription, "", new { @class = "text-danger" })
+    <br />
+    @Html.LabelFor(m => m.MetaKey)
+    @Html.TextBoxFor(m => m.MetaKey, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MetaKey, "", new { @class = "text-danger" })
+    <br />
+    @Html.LabelFor(m => m.IsActive)
+    @Html.CheckBoxFor(m => m.IsActive)
+
+    <br />
+    <br />
+
+    <button class="btn btn-info"><i class="fa fa-save"></i>  Kaydet</button>
+
+}

@@ -1,0 +1,80 @@
+﻿@model MVC_Proje1.Models.FooterViewModel
+
+<footer class="footer">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-4">
+                <div>
+                    <h2>İLETİŞİM</h2>
+                    <p>
+                        <i class="fa fa-map-marker">  @Model.Contact.Adress</i>
+                    </p>
+
+                    <p>
+                        <a href="tel:@Model.Contact.Phone">
+                            <i class="fa fa-mobile-phone">  @Model.Contact.Phone</i>
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="mailto: @Model.Contact.Email">
+                            <i class="fa fa-envelope-o">  @Model.Contact.Email</i>
+                        </a>
+                    </p>
+               
+                    <div class="social">
+                        <a href="@Model.Socials.Facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="@Model.Socials.Twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+
+                        <a href="@Model.Socials.Instagram">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+
+                        <a href="@Model.Socials.Youtube">
+                            <i class="fa fa-youtube"></i>
+                        </a>
+
+                        <a href="@Model.Socials.Linkedin">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div>
+                    <h2>Site Haritası</h2>
+                    <ul class="footer-menu">
+
+                        <li><a href="/">Anasayfa</a></li>
+                        <li><a href="/Pages/Index/1">Kurumsal</a></li>
+                        <li><a href="/Pages/Index/8">Eğitim</a></li>
+                        <li><a href="/Pages/Index/2">Hizmetlerimiz</a></li>
+                        <li><a href="/Pages/Index/7">Blog</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div>
+                    <h2>Son Yazılar</h2>
+                    <ul class="footer-menu">
+                        @foreach (var item in Model.LastPages)
+                        {
+                            <li><a href="/Pages/detail/@item.PageID">@item.PageTitle</a></li>
+                        }
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>

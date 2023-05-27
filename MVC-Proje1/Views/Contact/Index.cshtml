@@ -1,0 +1,74 @@
+﻿@model List<EntityLayer.Entity.Contact>
+@{
+    ViewBag.Title = "İletişim";
+}
+
+
+<div class="breadcrumb" >
+
+    <div class="container" >
+
+        <h1>İletişim</h1>
+
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row contact-link">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-xs-12">
+
+                <h2>@item.Title</h2>
+                <p>
+                    <i class="fa fa-map-marker"></i>  @item.Adress
+                </p>
+
+                <p>
+                    <a href="tel:@item.Phone">
+                        <i class="fa fa-phone"></i>  @item.Phone
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://wa.me/@item.Phone">
+                        <i class="fa fa-whatsapp"></i>  @item.Whatsapp
+                    </a>
+                </p>
+
+                <p>
+                    <a href="mailto: @item.Email">
+                        <i class="fa fa-envelope-o"></i>  @item.Email
+                    </a>
+                </p>
+
+            </div>
+
+            <div class="col-md-8 col-xs-12">
+
+                <div>
+                   @Html.Raw(@item.Map)
+                </div>
+
+            </div>
+        }
+    </div>
+
+
+</div>
+
+<style>
+
+    .contact-link a{
+        text-decoration:none;
+        color:#464545;
+
+    }
+    .contact-link a:hover{
+        color:#100f0f;
+    }
+    .contact-link p{
+        font-size:12pt;
+    }
+</style>

@@ -1,0 +1,79 @@
+﻿@model EntityLayer.Entity.Contact
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Whatsapp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Whatsapp)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Map)
+            </dt>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Map, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.TextAreaFor(model => model.Map, new { @class = "txtckeditor" })
+            @Html.ValidationMessageFor(model => model.Map, "", new { @class = "text-danger" })
+
+        </div>
+
+        <dd>
+            @Html.DisplayFor(model => model.Map)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ContactID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script>
+    $(function () {
+        CKEDITOR.replace("Description");
+    });
+</script>

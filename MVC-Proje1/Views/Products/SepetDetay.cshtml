@@ -1,0 +1,55 @@
+﻿@model List<EntityLayer.Entity.Product>
+@{
+    ViewBag.Title = "Sepet Detay";
+}
+
+<div class="breadcrumb">
+    <div class="container">
+        <h2>Sepetim</h2>
+    </div>
+</div>
+
+
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <th> Resim</th>
+            <th> Ürün Adı</th>
+            <th> Ürün Fiyat</th>
+            <th> Sil</th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Products/ProductDetail/@item.ProductID">
+                        <img src="@item.ThumbUrl" style="max-width:100px;" />
+                    </a>
+                </td>
+                <td>
+                    <a href="/Products/ProductDetail/@item.ProductID" style="text-decoration:none; color:#808080">
+                        @item.ProductName
+                    </a>
+                </td>
+                <td>
+                    <a href="/Products/ProductDetail/@item.ProductID"style="text-decoration:none; color:#808080">
+                        @item.Price
+                    </a>
+                </td>
+                <td>
+                    <a href="/products/delete/@item.ProductID" class="btn btn-danger">
+                        <i class="fa fa-trash"></i> Sil
+                    </a>
+                </td>
+
+
+            </tr>
+
+        }
+    </table>
+
+
+</div>
+

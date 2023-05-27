@@ -1,0 +1,42 @@
+﻿@model List<EntityLayer.Entity.Page>
+@{
+    ViewBag.Title = ViewBag.title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb">
+
+    <div class="container">
+
+        <h1>@ViewBag.title</h1>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="article">
+                    <a href="/pages/detail/@item.PageID">
+                        <img src="@item.Thumbrl" />
+                    </a>
+                    <div class="article-content">
+                        <a href="/pages/detail/@item.PageID">
+                            <h2>@item.PageTitle</h2>
+                           
+                        </a>
+                        <a href="/pages/detail/@item.PageID">
+                            <p>@item.MetaDescription</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+

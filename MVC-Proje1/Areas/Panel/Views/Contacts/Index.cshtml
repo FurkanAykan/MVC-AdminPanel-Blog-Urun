@@ -1,0 +1,68 @@
+﻿@model IEnumerable<EntityLayer.Entity.Contact>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>İletişim Sayfası</h2>
+
+<p>
+    <a href="/Panel/Contacts/Create" class="btn btn-primary"><i class="fa fa-plus-square"></i>  Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Whatsapp)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Whatsapp)
+        </td>
+      
+        <td>
+            <a href="/Panel/Contacts/Edit/@item.ContactID" class="btn btn-warning">
+
+                <i class="fa fa-pencil-square-o"></i>  Güncelle
+
+            </a>
+
+            <a href="/Panel/Contacts/delete/@item.ContactID" class="btn btn-danger">
+
+                <i class="fa fa-trash-o"></i>  Sil
+
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

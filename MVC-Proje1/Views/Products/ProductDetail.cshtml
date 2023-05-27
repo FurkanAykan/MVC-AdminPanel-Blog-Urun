@@ -1,0 +1,101 @@
+﻿@model Tuple<EntityLayer.Entity.Product,List<EntityLayer.Entity.ProductImage>>
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <br />
+    <h2>Ürün Detay Sayfası</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="details-image">
+                <img src="@Model.Item1.ImageUrl" alt="Alternate Text" />
+                
+            </div>
+            <ul class="image-list">
+                @foreach (var item in Model.Item2)
+                {
+                    <li data-image="@item.ImageUrl"><img src="@item.ThumbUrl" alt="Alternate Text" /></li>
+                }
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <div class="detail-product">
+                <h2>Ürün Adı :  @Model.Item1.ProductName</h2>
+                <hr style="color:midnightblue" />
+                <p class="price-detail">Fiyat :  @Model.Item1.Price</p>
+                <hr style="color:midnightblue"/>
+                <p>
+
+                    <span style="font-weight:bold;">ÜRÜN AÇIKLAMA :</span>  @Html.Raw(Model.Item1.Description)
+
+                </p>
+                <hr style="color:midnightblue" />
+                <a href="/products/sepet/@Model.Item1.ProductID" class="basket-button"><i class="fa fa-shopping-basket"></i>  Sepete Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+        $(".image-list li").on("click", function () {
+
+            var imagelink = $(this).data("image");
+
+            $(".details-image img").attr("src", imagelink);
+
+        });
+
+    });
+</script>
+
+
+<style>
+    .details-image img {
+        width: 100%;
+    }
+
+    .price-detail {
+        color: #454242;
+        font-weight: bold;
+        font-size: 18pt;
+    }
+    .basket-button {
+        padding: 12px;
+        background-color: #ff6a00;
+        color: white;
+        text-decoration:none;
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+        .basket-button:hover {
+            background-color: #e16207;
+            color:white;
+            text-decoration:none;
+           
+        }
+        .image-list{
+            margin:0px;
+            padding:0px;
+            list-style:none;
+
+        }
+    .image-list li {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        display:inline-block;
+    }
+            .image-list li img {
+               aspect-ratio:1/1;
+               object-fit:cover;
+               max-width:100px;
+
+            }
+</style>
+

@@ -1,0 +1,82 @@
+﻿@model MVC_Proje1.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Anasayfa";
+}
+
+<link href="/Content/owl/css/owl.css" rel="stylesheet" />
+<script src="/Content/owl/js/jquery.js"></script>
+<script src="/Content/owl/js/owl.js"></script>
+<link href="/Content/owl/css/main-white.css" rel="stylesheet" />
+<link href="/Content/owl/css/theme-main.css" rel="stylesheet" />
+
+@Html.Partial("_swiper", Model.Sliders)
+<br />
+<br />
+@*-----------------------Product Category Listesi----------------------------------*@
+
+<div class="container">
+    <h2>Ürünler</h2>
+    <div class="row product-category-list product-carusel">
+        @foreach (var x in Model.ProductCategories)
+        {
+            <div class="item">
+                <a href="/Products/ProductDetail/@x.CategoryID">
+                    <div class="card-img">
+                        <img src="@x.ImageUrl" alt="Image" />
+                        <hr />
+                        <h2>
+                            @x.CategoryName
+                        </h2>
+                    </div>
+                </a>
+
+
+
+            </div>
+        }
+
+
+    </div>
+</div>
+<br />
+<br />
+<script>
+    $(function () {
+        $('.product-carusel').owlCarousel({
+            loop: true,
+            margin: 0,
+            autoplay: true,
+            nav: true,
+            dots: false,
+            navText: [
+                '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+                '<i class="fa fa-angle-right" aria-hidden="true"></i>'
+            ],
+            responsive: {
+                0: {
+                    items: 1 /* 0 px le düşünce 1 resim göster*/
+                },
+                600: {
+                    items: 2 /* 600 px le düşünce 2 resim göster*/
+                },
+                1000: {
+                    items: 3 /* 1000 px le düşünce 3 resim göster*/
+                }
+            }
+        })
+
+
+
+    });
+</script>
+
+@*-----------------------Product Category Listesi End----------------------------------*@
+
+@* ---------------------- Blog List-------------------------------- *@
+
+<hr />
+@Html.Action("BlogHome", "Home")
+<hr />
+@* ---------------------- Blog List End-------------------------------- *@
+

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EntityLayer.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Ürünler</h2>
+
+<p>
+    <a href="/Panel/Products/Create" class="btn btn-primary"><i class="fa fa-plus-square-o"></i>  Yeni Ekle</a>
+</p>
+<table class="table">
+    <tr>
+        <th>Resim</th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCategory.CategoryName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+
+     
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>İşlem</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@item.ThumbUrl" style="max-width:60px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCategory.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+        
+            <td>
+                @if (item.IsActive == true)
+                {
+                    <div class="aktif"></div>
+                }
+                else
+                {
+                    <div class="pasif"></div>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }, new { @class = "btn btn-warning" })
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger" })
+                <a  class="btn btn-success" href="/Panel/Products/Images/@item.ProductID"><i class="fa fa-camera"></i>  Ürün Resimleri</a>
+            </td>
+        </tr>
+        }
+
+    </table>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<EntityLayer.Entity.Product>
+@{
+    ViewBag.Title = "Ürünler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumb">
+    <div class="container">
+        <h2 >Ürünler</h2>
+    </div>
+   
+</div>
+<br />
+
+@*-----------------------Product  Listesi----------------------------------*@
+<div class="container">
+    <div class="row product-category-list , düzeltme">
+        @foreach (var x in Model)
+        {
+             
+            <div class="col-md-3">
+                <div class="card-img">
+                    <a href="/products/productdetail/@x.ProductID"><img src="@x.ThumbUrl" alt="Image" /></a>
+
+                   
+                    <a href="/products/productdetail/@x.ProductID" style="text-decoration:none;" >
+
+                        <h2 >
+                            @x.ProductName
+                        </h2>
+
+                    </a>
+                    <a href="/products/productdetail/@x.ProductID" style="text-decoration:none;">
+
+                       <p class="price-label" >@string.Format("{0:N}",x.Price)   <i class="fa fa-try"></i></p>
+                    </a>
+                    
+                    <span class="category-label" >
+                        @x.ProductCategory.CategoryName
+                    </span>
+
+                </div>
+            </div>
+            
+        }
+
+
+    </div>
+</div>
+<br />
+<br />
+@*-----------------------Product  Listesi End----------------------------------*@
+@*<style>
+    .düzeltme{
+        text-decoration:none;
+    }
+</style>*@

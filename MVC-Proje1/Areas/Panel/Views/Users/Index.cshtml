@@ -1,0 +1,56 @@
+﻿
+@model IEnumerable<EntityLayer.Entity.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Panel/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Kullanıcılar</h2>
+
+<p>
+    <a href="/Panel/Users/Create" class="btn btn-primary"><i class="fa fa-plus-square"></i>  Create New</a>
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+
+                <a href="/Panel/Users/Edit/@item.UserID" class="btn btn-warning">
+
+                    <i class="fa fa-pencil-square-o"></i>  Güncelle
+
+                </a>
+
+                <a href="/Panel/Users/delete/@item.UserID" class="btn btn-danger">
+
+                    <i class="fa fa-trash-o"></i>  Sil
+
+                </a>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID })*@
+            </td>
+        </tr>
+    }
+
+</table>
